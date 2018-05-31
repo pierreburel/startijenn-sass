@@ -1,0 +1,88 @@
+////
+/// @group string
+////
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @author Pierre Burel
+/// @access public
+/// @param {String} $string - Initial string
+/// @param {String | List | Map} $search - Substring(s) to replace
+/// @param {String | List} $replace [''] - New value(s)
+/// @return {String} - Updated string
+/// @link https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($string, $search, $replace: "") {
+  @if type-of($search) == map {
+    @each $key, $value in $search {
+      $string: str-replace($string, $key, $value);
+    }
+  }
+
+  @else if type-of($search) == list and type-of($replace) == list {
+      @if length($search) != length($replace) {
+        @error "`$replace` must have the same length as `$search`.";
+      }
+
+      @for $i from 1 through length($search) {
+        $string: str-replace($string, nth($search, $i), nth($replace, $i));
+      }
+  }
+
+  @else if type-of($search) == list {
+    @each $key in $search {
+      $string: str-replace($string, $key, $replace);
+    }
+  }
+
+  @else if type-of($replace) == list {
+    @error "You cannot replace one item with multiple ones.";
+  }
+
+  @else {
+    $index: str-index($string, $search);
+
+    @if $index {
+      $string: str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+  }
+
+  @return $string;
+}
+
+/// Check if `$string` contains `$search`
+/// @author Sindre Sorhus
+/// @access public
+/// @param {String} $string - String to check
+/// @param {String} $search - Substring to search
+/// @return {Boolean}
+/// @link https://github.com/sindresorhus/sass-extras
+@function str-contains($string, $search) {
+  @return str-index($string, $search) != null;
+}
+
+/// @alias str-contains
+@function str-includes($string, $search) {
+  @return str-contains($string, $search);
+}
+
+/// Check if `$string` starts with the given `$substring`.
+/// @author Sindre Sorhus
+/// @access public
+/// @parameter {String} $string - String to check
+/// @parameter {String} $search - Substring to search for at the start of `$string`
+/// @return {Boolean}
+/// @link https://github.com/sindresorhus/sass-extras
+@function str-starts-with($string, $search) {
+  @return str-index($string, $search) == 1;
+}
+
+/// Check if `$string` ends with the given `$substring`.
+/// @author Sindre Sorhus
+/// @access public
+/// @parameter {String} $string - String to check
+/// @parameter {String} $search - Substring to search for at the end of `$string`
+/// @return {Boolean}
+/// @link https://github.com/sindresorhus/sass-extras
+@function str-ends-with($string, $search) {
+  @return str-slice($string, (str-length($string) - str-length($search) + 1)) == $search;
+}

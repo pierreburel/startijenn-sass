@@ -1,0 +1,53 @@
+////
+/// @group font
+////
+
+/// Suffix to append to font filename
+/// @type String
+$font-face-suffix: "-webfont" !default;
+
+/// Generate @font-face declaration (woff and woff2 only).
+/// @author Pierre Burel
+/// @access public
+/// @param {String} $family - font family name
+/// @param {String} $filename - font filename (without extension)
+/// @param {String} $suffix [$font-face-suffix] - suffix to append to filename
+/// @content additionnal properties (font-weight, font-style…)
+/// @require {function} font-url
+/// @require $font-face-suffix
+@mixin font-face($family, $filename, $suffix: $font-face-suffix) {
+  @font-face {
+    font-family: $family;
+    src: font-url("#{$filename}#{$suffix}.woff")  format("woff"),
+         font-url("#{$filename}#{$suffix}.woff2") format("woff2");
+    @content;
+  }
+}
+
+/// Default font-size
+/// @type Number
+$font-size-default: 16px !default;
+
+/// Default line-height
+/// @type Number
+$line-height-default: 24px !default;
+
+/// Generate font-size and line-height properties
+/// @author Pierre Burel
+/// @access public
+/// @param {Number} $font-size [$font-size-default] - font size in px
+/// @param {Number | String | Boolean} $line-height [auto] - can be auto, 24px, 1.5, default, false…
+/// @require {mixin} sass-rem/rem <https://github.com/pierreburel/sass-rem>
+/// @require $font-size-default
+/// @require $line-height-default
+@mixin font-size($font-size: $font-size-default, $line-height: auto) {
+  @include rem(font-size, $font-size);
+
+  @if $line-height == auto {
+    line-height: ceil($font-size / $line-height-default) * ($line-height-default / $font-size);
+  } @else if type-of($line-height) == number and unit($line-height) == px {
+    line-height: $line-height / $font-size;
+  } @else if $line-height {
+    line-height: $line-height;
+  }
+}

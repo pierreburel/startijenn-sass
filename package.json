@@ -1,0 +1,43 @@
+{
+  "name": "startijenn-sass",
+  "version": "1.0.0",
+  "description": "A collection of Sass functions and mixins, lots of them gathered around the web.",
+  "main": "index.scss",
+  "keywords": [
+    "sass",
+    "helpers",
+    "functions",
+    "mixins"
+  ],
+  "ignore": [
+    "**/.*",
+    "docs"
+  ],
+  "files": [
+    "index.scss",
+    "helpers/*.scss",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "homepage": "https://pierreburel.github.io/startijenn-sass",
+  "bugs": {
+    "url": "https://github.com/pierreburel/startijenn-sass/issues"
+  },
+  "license": "MIT",
+  "author": "Pierre Burel <contact@pierreburel.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pierreburel/startijenn-sass.git"
+  },
+  "dependencies": {
+    "sass-direction": "^1.2.0",
+    "sass-em": "^1.0.3",
+    "sass-mq": "^5.0.0",
+    "sass-rem": "^2.0.1",
+    "sass-resolution": "^1.0.1",
+    "sassdoc": "^2.5.0"
+  },
+  "scripts": {
+    "docs": "sassdoc helpers -d docs"
+  }
+}

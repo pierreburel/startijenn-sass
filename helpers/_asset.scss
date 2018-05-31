@@ -1,0 +1,71 @@
+////
+/// @group asset
+/// @access public
+/// @author Pierre Burel
+////
+
+/// Default path of the folder containing assets
+/// @type String
+$asset-base-path: "../" !default;
+
+/// Default paths of the folders containing specific types assets (image and font)
+/// relative to `$asset-base-path`
+/// @type Map
+$asset-type-path: (
+  "image": "images/",
+  "font": "fonts/"
+) !default;
+
+/// Returns the path of an asset
+/// @param {String} $type - type of the asset
+/// @param {String} $file - name of the asset
+/// @return {String} - complete path of the asset
+/// @require $asset-base-path
+/// @require $asset-type-path
+@function asset-path($type, $file) {
+  @if not map-has-key($asset-type-path, $type) {
+    @error "`#{$type}` is not a valid asset type.";
+  }
+  @return $asset-base-path + map-get($asset-type-path, $type) + $file;
+}
+
+/// Returns the url of an asset
+/// @param {String} $type - type of the asset
+/// @param {String} $file - name of the asset
+/// @return {String} - complete url of the asset
+/// @require {function} asset-path
+@function asset-url($type, $file) {
+  @return url(asset-path($type, $file));
+}
+
+/// Returns the path of an image
+/// @param {String} $file - name of the image
+/// @return {String} - complete path of the image
+/// @require {function} asset-path
+@function image-path($file) {
+  @return asset-path("image", $file);
+}
+
+/// Returns the url of an image
+/// @param {String} $file - name of the image
+/// @return {String} - complete url of the image
+/// @require {function} image-path
+@function image-url($file) {
+  @return url(image-path($file));
+}
+
+/// Returns the path of a webfont
+/// @param {String} $file - name of the font
+/// @return {String} - complete path of the font
+/// @require {function} asset-path
+@function font-path($file) {
+  @return asset-path("font", $file);
+}
+
+/// Returns the url of a webfont
+/// @param {String} $file - name of the font
+/// @return {String} - complete url of the font
+/// @require {function} font-path
+@function font-url($file) {
+  @return url(font-path($file));
+}

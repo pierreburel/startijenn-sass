@@ -1,0 +1,68 @@
+////
+/// @group type
+/// @author Hugo Giraudel
+/// @access public
+/// @param {String} $string - Value to check
+/// @return {Bool}
+/// @link https://css-tricks.com/snippets/sass/advanced-type-checking/
+////
+
+/// Check if `$value` is a number
+@function is-number($value) {
+  @return type-of($value) == "number";
+}
+
+/// Check if `$value` is a duration
+@function is-duration($value) {
+  @return is-number($value) and index("ms" "s", unit($value)) != null;
+}
+
+/// @alias is-duration
+@function is-time($value) {
+  @return is-duration($value);
+}
+
+/// Check if `$value` is an angle
+@function is-angle($value) {
+  @return is-number($value) and index("deg" "rad" "grad" "turn", unit($value)) != null;
+}
+
+/// Check if `$value` is a frequency
+@function is-frequency($value) {
+  @return is-number($value) and index("Hz" "kHz", unit($value)) != null;
+}
+
+/// Check if `$value` is an integer
+@function is-integer($value) {
+  @return is-number($value) and round($value) == $value;
+}
+
+/// Check if `$value` is a relative length
+@function is-relative-length($value) {
+  @return is-number($value) and index("em" "ex" "ch" "rem" "vw" "vh" "vmin" "vmax", unit($value)) != null;
+}
+
+/// Check if `$value` is an absolute length
+@function is-absolute-length($value) {
+  @return is-number($value) and index("cm" "mm" "in" "px" "pt" "pc", unit($value)) != null;
+}
+
+/// Check if `$value` is a percentage
+@function is-percentage($value) {
+  @return is-number($value) and unit($value) == "%";
+}
+
+/// Check if `$value` is a length
+@function is-length($value) {
+  @return is-relative-length($value) or is-absolute-length($value);
+}
+
+/// Check if `$value` is a resolution
+@function is-resolution($value) {
+  @return is-number($value) and index("dpi" "dpcm" "dppx", unit($value)) != null;
+}
+
+/// Check if `$value` is a position
+@function is-position($value) {
+  @return is-length($value) or is-percentage($value) or index("top" "right" "bottom" "left" "center", $value) != null;
+}

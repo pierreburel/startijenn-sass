@@ -1,0 +1,37 @@
+////
+/// @group svg
+////
+
+/// Default SVG namespace
+/// @type String
+$svg-namespace: 'xmlns="http://www.w3.org/2000/svg"' !default;
+
+/// Default SVG characters to encode
+/// @type Map
+$svg-encode: (
+  '"': '\'',
+  '%': '%25',
+  '&': '%26',
+  '#': '%23',
+  '{': '%7B',
+  '}': '%7D',
+  '<': '%3C',
+  '>': '%3E'
+) !default;
+
+/// URL-encode a SVG to be used as a background-image
+/// Automatically add missing namespace
+/// @param {String} $svg - SVG to encode
+/// @return {String} - encoded SVG
+/// @require $svg-namespace
+/// @require $svg-encode
+/// @require {function} str-replace
+/// @link https://codepen.io/tigt/post/optimizing-svgs-in-data-uris#its-all-in-the-quotes-1
+/// @link https://codepen.io/jakob-e/pen/doMoML
+@function svg-url($svg) {
+  @if not str-index($svg, $svg-namespace) {
+    $svg: str-replace($svg, '<svg', '<svg #{$svg-namespace}');
+  }
+
+  @return url("data:image/svg+xml,#{str-replace($svg, $svg-encode)}");
+}
