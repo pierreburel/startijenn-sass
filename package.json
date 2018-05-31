@@ -1,6 +1,6 @@
 {
   "name": "startijenn-sass",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A collection of Sass functions and mixins, lots of them gathered around the web.",
   "main": "index.scss",
   "keywords": [

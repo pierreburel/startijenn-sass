@@ -22,6 +22,9 @@ $asset-type-path: (
 /// @return {String} - complete path of the asset
 /// @require $asset-base-path
 /// @require $asset-type-path
+/// @example scss
+///   background-image: url(asset-path("image", "logo.png"));
+///   // background-image: url("../images/logo.png");
 @function asset-path($type, $file) {
   @if not map-has-key($asset-type-path, $type) {
     @error "`#{$type}` is not a valid asset type.";
@@ -34,6 +37,9 @@ $asset-type-path: (
 /// @param {String} $file - name of the asset
 /// @return {String} - complete url of the asset
 /// @require {function} asset-path
+/// @example scss
+///   background-image: asset-url("image", "logo.png");
+///   // background-image: url("../images/logo.png");
 @function asset-url($type, $file) {
   @return url(asset-path($type, $file));
 }
@@ -42,6 +48,9 @@ $asset-type-path: (
 /// @param {String} $file - name of the image
 /// @return {String} - complete path of the image
 /// @require {function} asset-path
+/// @example scss
+///   background-image: url(image-path("logo.png"));
+///   // background-image: url("../images/logo.png");
 @function image-path($file) {
   @return asset-path("image", $file);
 }
@@ -50,6 +59,9 @@ $asset-type-path: (
 /// @param {String} $file - name of the image
 /// @return {String} - complete url of the image
 /// @require {function} image-path
+/// @example scss
+///   background-image: image-url("logo.png");
+///   // background-image: url("../images/logo.png");
 @function image-url($file) {
   @return url(image-path($file));
 }
@@ -58,6 +70,9 @@ $asset-type-path: (
 /// @param {String} $file - name of the font
 /// @return {String} - complete path of the font
 /// @require {function} asset-path
+/// @example scss
+///   src: url(font-path("webfont.woff")) format("woff");
+///   // src: url("../fonts/webfont.woff") format("woff");
 @function font-path($file) {
   @return asset-path("font", $file);
 }
@@ -66,6 +81,9 @@ $asset-type-path: (
 /// @param {String} $file - name of the font
 /// @return {String} - complete url of the font
 /// @require {function} font-path
+/// @example scss
+///   src: font-url("webfont.woff") format("woff");
+///   // src: url("../fonts/webfont.woff") format("woff");
 @function font-url($file) {
   @return url(font-path($file));
 }

@@ -15,6 +15,24 @@ $font-face-suffix: "-webfont" !default;
 /// @content additionnal properties (font-weight, font-style…)
 /// @require {function} font-url
 /// @require $font-face-suffix
+/// @example scss
+///   @include font-face("My Font", "myfont");
+///   // @font-face {
+///   //   font-family: "My Font";
+///   //   src: url("../fonts/myfont-webfont.woff") format("woff"),
+///   //        url("../fonts/myfont-webfont.woff2") format("woff2");
+///   // }
+///
+///   @include font-face("My Font", "myfont") {
+///     font-style: italic;
+///   }
+///   // @font-face {
+///   //   font-family: "My Font";
+///   //   src: url("../fonts/myfont-webfont.woff") format("woff"),
+///   //        url("../fonts/myfont-webfont.woff2") format("woff2");
+///   //   font-style: italic;
+///   // }
+
 @mixin font-face($family, $filename, $suffix: $font-face-suffix) {
   @font-face {
     font-family: $family;
@@ -32,7 +50,7 @@ $font-size-default: 16px !default;
 /// @type Number
 $line-height-default: 24px !default;
 
-/// Generate font-size and line-height properties
+/// Generate rem font-size and unitless line-height properties
 /// @author Pierre Burel
 /// @access public
 /// @param {Number} $font-size [$font-size-default] - font size in px
@@ -40,6 +58,21 @@ $line-height-default: 24px !default;
 /// @require {mixin} sass-rem/rem <https://github.com/pierreburel/sass-rem>
 /// @require $font-size-default
 /// @require $line-height-default
+/// @example scss
+///   @include font-size;
+///   // font-size: 1rem;
+///   // line-height: 1.5;
+///
+///   @include font-size(24px);
+///   // font-size: 1.5rem;
+///   // line-height: 1;
+///
+///   @include font-size(24px, 32px);
+///   // font-size: 1.5rem;
+///   // line-height: 1.3333333333;
+///
+///   @include font-size(24px, false);
+///   // font-size: 1.5rem;
 @mixin font-size($font-size: $font-size-default, $line-height: auto) {
   @include rem(font-size, $font-size);
 
