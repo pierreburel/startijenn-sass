@@ -1,5 +1,5 @@
 ////
-/// @group color
+/// @group colors
 ////
 
 /// Slightly lighten a color
@@ -30,7 +30,7 @@
   @return mix(black, $color, $percentage);
 }
 
-/// Precomputed linear color channel values, for use in contrast calculations.
+/// Precomputed linear color channel values, for use in contrast calculations
 /// @access private
 /// @type String
 /// @link https://github.com/material-components/material-components-web/blob/master/packages/mdc-theme/_constants.scss

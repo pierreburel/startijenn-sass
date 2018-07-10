@@ -6,6 +6,8 @@ Documentation: https://pierreburel.github.io/startijenn-sass
 
 Uses: [sass-direction](https://github.com/pierreburel/sass-direction), [sass-em](https://github.com/pierreburel/sass-em), [sass-mq](https://github.com/sass-mq/sass-mq), [sass-rem](https://github.com/pierreburel/sass-rem) and [sass-resolution](https://github.com/pierreburel/sass-resolution).
 
+Why startijenn: pronounced /starˈtiːʒɛn/, means strength, energy or dynamism in Breton.
+
 ## Installation
 
 ```shell

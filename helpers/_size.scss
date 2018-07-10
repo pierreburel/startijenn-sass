@@ -1,0 +1,37 @@
+////
+/// @group display
+////
+
+/// Set width and height of an element ;
+/// Uses [sass-rem](https://github.com/pierreburel/sass-rem) if available
+/// @author Pierre Burel
+/// @access public
+/// @param {Number} $width - width of the element
+/// @param {Number} $height [$width] - height of the element
+/// @param {Boolean} $rem [true] - set to false to disable rem
+/// @require {mixin} sass-rem/rem <https://github.com/pierreburel/sass-rem>
+/// @example scss
+///   .u-shape-square {
+///     @include size(20px);
+///   }
+///   // .u-shape-square {
+///   //   height: 1.25rem;
+///   //   width: 1.25rem;
+///   // }
+///
+///   .u-shape-rectangle {
+///     @include size(40em, 20em);
+///   }
+///   // .u-shape-rectangle {
+///   //   height: 20em;
+///   //   width: 40em;
+///   // }
+@mixin size($width, $height: $width, $rem: true) {
+  @if $rem and mixin-exists(rem) {
+    @include rem(height, $height);
+    @include rem(width, $width);
+  } @else {
+    height: $height;
+    width: $width;
+  }
+}

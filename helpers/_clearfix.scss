@@ -1,0 +1,24 @@
+////
+/// @group display
+////
+
+/// Clear floats with the last generation clearfix method
+/// @author Thierry Koblentz
+/// @access public
+/// @link http://cssmojo.com/the-very-latest-clearfix-reloaded/
+/// @example scss
+///   .u-clearfix {
+///     @include clearfix;
+///   }
+///   // .u-clearfix::after {
+///   //   clear: both;
+///   //   content: "";
+///   //   display: block;
+///   // }
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}

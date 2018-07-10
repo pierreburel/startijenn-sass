@@ -1,0 +1,78 @@
+////
+/// @group display
+////
+
+/// Hide visually an element
+/// @author Pierre Burel
+/// @access public
+/// @param {Boolean} $visible [false] - set to true to toggle visibility
+/// @example scss
+///   .u-hide-visually {
+///     @include hide-visually;
+///
+///     &:active,
+///     &:focus {
+///       @include hide-visually("unhide");
+///     }
+///   }
+///   // .u-hide-visually {
+///   //   border: 0;
+///   //   clip: rect(0 0 0 0);
+///   //   clip-path: inset(50%);
+///   //   height: 1px;
+///   //   overflow: hidden;
+///   //   padding: 0;
+///   //   position: absolute;
+///   //   white-space: nowrap;
+///   //   width: 1px;
+///   // }
+///   // .u-hide-visually:active, .u-hide-visually:focus {
+///   //   clip: auto;
+///   //   clip-path: none;
+///   //   height: auto;
+///   //   overflow: visible;
+///   //   position: static;
+///   //   white-space: normal;
+///   //   width: auto;
+///   // }
+@mixin hide-visually($visible: false) {
+  @if not $visible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  } @else {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    white-space: normal;
+    width: auto;
+  }
+}
+
+/// Hide text of an element (used for image replacement)
+/// @author Pierre Burel
+/// @access public
+/// @example scss
+///   .u-hide-text {
+///     @include hide-text;
+///   }
+///   // .u-hide-text {
+///   //   direction: ltr;
+///   //   overflow: hidden;
+///   //   text-indent: 100%;
+///   //   white-space: nowrap;
+///   // }
+@mixin hide-text {
+  direction: ltr;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}

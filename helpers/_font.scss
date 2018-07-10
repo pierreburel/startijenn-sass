@@ -1,12 +1,12 @@
 ////
-/// @group font
+/// @group fonts
 ////
 
 /// Suffix to append to font filename
 /// @type String
 $font-face-suffix: "-webfont" !default;
 
-/// Generate @font-face declaration (woff and woff2 only).
+/// Generate @font-face declaration (woff and woff2 only)
 /// @author Pierre Burel
 /// @access public
 /// @param {String} $family - font family name
@@ -32,7 +32,6 @@ $font-face-suffix: "-webfont" !default;
 ///   //        url("../fonts/myfont-webfont.woff2") format("woff2");
 ///   //   font-style: italic;
 ///   // }
-
 @mixin font-face($family, $filename, $suffix: $font-face-suffix) {
   @font-face {
     font-family: $family;
@@ -50,12 +49,13 @@ $font-size-default: 16px !default;
 /// @type Number
 $line-height-default: 24px !default;
 
-/// Generate rem font-size and unitless line-height properties.
-/// Uses [sass-rem](https://github.com/pierreburel/sass-rem) if available.
+/// Generate rem font-size and unitless line-height properties ;
+/// uses [sass-rem](https://github.com/pierreburel/sass-rem) if available
 /// @author Pierre Burel
 /// @access public
 /// @param {Number} $font-size [$font-size-default] - font size in px
 /// @param {Number | String | Boolean} $line-height [auto] - can be auto, 24px, 1.5, default, false…
+/// @param {Boolean} $rem [true] - set to false to disable rem
 /// @require {mixin} sass-rem/rem <https://github.com/pierreburel/sass-rem>
 /// @require $font-size-default
 /// @require $line-height-default
@@ -74,8 +74,8 @@ $line-height-default: 24px !default;
 ///
 ///   @include font-size(24px, false);
 ///   // font-size: 1.5rem;
-@mixin font-size($font-size: $font-size-default, $line-height: auto) {
-  @if mixin-exists(rem) {
+@mixin font-size($font-size: $font-size-default, $line-height: auto, $rem: true) {
+  @if $rem and mixin-exists(rem) {
     @include rem(font-size, $font-size);
   } @else {
     font-size: $font-size / $font-size-default * 1rem;
