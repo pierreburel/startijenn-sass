@@ -10,7 +10,7 @@
 /// @param {Number} $max - Maximum value
 /// @return {Number}
 /// @link https://css-tricks.com/snippets/sass/clamping-number/
-@function clamp($number, $min, $max) {
+@function clamp-number($number, $min, $max) {
   @return min(max($number, $min), $max);
 }
 
