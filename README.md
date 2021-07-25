@@ -32,7 +32,7 @@ Custom imports:
 
 ## Thanks
 
-* [Hugo Giraudel](https://github.com/HugoGiraudel)
+* [Kitty Giraudel](https://github.com/KittyGiraudel)
 * [Sindre Sorhus](https://github.com/sindresorhus)
 * [Sérgio Gomes](https://github.com/sgomes)
 * [CSS Tricks](https://css-tricks.com/snippets/sass/)
